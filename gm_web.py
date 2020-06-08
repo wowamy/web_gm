@@ -35,12 +35,12 @@ class RobotWeb(object):
     @cherrypy.expose
     def start(self):
         subprocess.Popen(['bash ./bash_script/gm.bash '+self.ros_master], shell=True)
-        return open('./web/stop.html')
+        return open('./web/home.html')
 
     @cherrypy.expose
     def stop(self):
-        os.system("ps aux | grep pub | awk '{print $2}' | xargs kill -9")
-        return 'stop Gmapping'
+        os.system("kill 0")
+        return open('./web/home.html')
 
 if __name__ == "__main__":
     cherrypy.quickstart(RobotWeb(), '/',config)
